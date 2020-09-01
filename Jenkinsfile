@@ -26,7 +26,9 @@ pipeline {
           checkout scm
           docker.withRegistry('', 'DockerRegistryID') {
           def customImage = docker.build("moforges/hol-pipeline:${env.BUILD_ID}")
+          def customImage = docker.build("moforges/hol-pipeline")
           customImage.push()
+          customImage1.push()
           }
     }
         
