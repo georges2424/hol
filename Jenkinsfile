@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    triggers {
+  pollSCM '* * * * *'
+}
+
+
+
     tools {
         maven 'M2_HOME'
     }
@@ -29,10 +35,15 @@ pipeline {
           def customImage = docker.build("moforges/hol-pipeline")
           customImage.push()
           customImage1.push()
-          }
+
+
+}
     }
         
     }
 }
+      stage ( 'deployment trigger') {
+         steps {
+	   build 'hol-CI'
     }
 }
